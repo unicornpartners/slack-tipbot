@@ -18,7 +18,7 @@ Other Commands
   @tipbot deposit                              # show a bitcoin address to add more funds
   @tipbot withdraw <amount> <address|email>    # withdraw to a bitcoin or email address
   @tipbot send <amount> <address|email>        # same as withdraw
-  @tipbot balances <currency>                  # see who has what
+  @tipbot leaderboard <currency>               # see who has what, 'rank' also works
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.```
 \n
@@ -78,7 +78,7 @@ Just so you understand how much money you are throwing away, there are 1,000,000
     currency ||= "bits"
 
     currency.downcase!
-
+    
     account_id = find_or_create_account(data['user'])
     b = coinbase.account(account_id).balance
 
@@ -208,7 +208,7 @@ Just so you understand how much money you are throwing away, there are 1,000,000
   end
 
   def get_user_name user_id
-    $redis.hget 'users', user_id.downcase
+    $redis.hget 'users', user_id
   end
 
   def tipbot_user_id
