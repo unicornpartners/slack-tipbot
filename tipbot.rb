@@ -50,7 +50,7 @@ class Tipbot
         send(data)
       when 'help', '?'
         help(data)
-      when 'rank', 'leaderboard'
+      when 'balances', 'rank', 'leaderboard' # kept rank & leaderboard for backward-compatibility
         rank(data)
       when 'hi'
         message(channel: data['channel'], text: "Hi <@#{data['user']}>!")
