@@ -19,6 +19,7 @@ Other Commands
   @tipbot withdraw <amount> <address|email>    # withdraw to a bitcoin or email address
   @tipbot send <amount> <address|email>        # same as withdraw
   @tipbot balances <currency>                  # see who has what
+  @tipbot bitvalue                             # Display the current value for a bit in USD
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.```
 \n
@@ -33,6 +34,14 @@ Just so you understand how much money you are throwing away, there are 1,000,000
   def default data
     message({channel: data['channel'], text: "I didn't recognize that command. Here is some help on usage..."})
     help(data)
+  end
+
+  def bitvalue data
+    val = coinbase.spot_price
+    message({channel: data['channel'], text: "Current bit value in #{val.currency} is: #{val.amount.to_f/1000000}"})
+    rescue Exception => e
+      puts e
+      message({channel: data['channel'], text: e.message})
   end
 
   def transfer data

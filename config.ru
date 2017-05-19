@@ -10,12 +10,21 @@ require 'tipbot'
 require 'uri'
 
 Thread.new do
+  retries = 0
   begin
+  	max_retries = 5
     Tipbot.new.run
   rescue Exception => e
-    STDERR.puts "ERROR: #{e}"
-    STDERR.puts e.backtrace
-    retry
+  	if retries <= max_retries
+  		retries += 1
+  		puts "THIS IS ATTEMPT #{retries}"
+	    STDERR.puts "ERROR: #{e}"
+	    STDERR.puts e.backtrace
+		sleep 2 ** retries
+    	retry
+    else
+    	raise "Timeout: #{e.message}"
+    end
   end
 end
 
