@@ -21,7 +21,7 @@ Other Commands
   @tipbot deposit                              # show a bitcoin address to add more funds
   @tipbot withdraw <amount> <address|email>    # withdraw to a bitcoin or email address
   @tipbot send <amount> <address|email>        # same as withdraw
-  @tipbot leaderboard <currency>               # see who has what, 'rank' also works
+  @tipbot balances <currency>                  # see who has what
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.
 ```

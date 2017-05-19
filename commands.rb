@@ -18,11 +18,13 @@ Other Commands
   @tipbot deposit                              # show a bitcoin address to add more funds
   @tipbot withdraw <amount> <address|email>    # withdraw to a bitcoin or email address
   @tipbot send <amount> <address|email>        # same as withdraw
-  @tipbot leaderboard <currency>               # see who has what, 'rank' also works
+  @tipbot balances <currency>                  # see who has what
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.```
 \n
 You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bits :10bits:, 100bits :100bits:, and 1000bits :1000bits:.
+\n
+Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin. 
       ".strip
     }
     message(response)
@@ -76,7 +78,7 @@ You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bit
     currency ||= "bits"
 
     currency.downcase!
-    
+
     account_id = find_or_create_account(data['user'])
     b = coinbase.account(account_id).balance
 
@@ -206,7 +208,7 @@ You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bit
   end
 
   def get_user_name user_id
-    $redis.hget 'users', user_id
+    $redis.hget 'users', user_id.downcase
   end
 
   def tipbot_user_id
