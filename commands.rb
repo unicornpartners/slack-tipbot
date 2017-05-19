@@ -206,7 +206,7 @@ You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bit
   end
 
   def get_user_name user_id
-    $redis.hget 'users', user_id
+    $redis.hget 'users', user_id.downcase
   end
 
   def tipbot_user_id
