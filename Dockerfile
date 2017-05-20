@@ -1,7 +1,10 @@
 FROM ruby:2.3.1-alpine
 
-ADD docker-entrypoint.sh /
-RUN chmod +x docker-entrypoint.sh && apk --no-cache add git g++ make && git clone https://github.com/mattgy/slack-tipbot.git && gem install bundler rake \
-&& cd slack-tipbot && bundle install
+WORKDIR /slack-tipbot
 
-ENTRYPOINT /docker-entrypoint.sh
+COPY . .
+
+RUN apk --no-cache add g++ make 
+RUN gem install bundler rake && bundle install && chmod +x docker-entrypoint.sh
+
+ENTRYPOINT ./docker-entrypoint.sh
