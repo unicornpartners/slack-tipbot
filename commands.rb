@@ -22,10 +22,10 @@ Other Commands
   @tipbot bitvalue                             # Display the current value for a bit in USD
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.
-\n
-You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bits :10bits:, 100bits :100bits:, and 1000bits :1000bits:.
-\n
+
 Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin.```
+
+You can also tip people with reactions to their messages: 1bit :1bit:, 10bits :10bits:, 100bits :100bits:, and 1000bits :1000bits:.
       ".strip
     }
     message(response)
