@@ -15,6 +15,18 @@ Parameters:
   ImageTag:
     Type: String
     Description: Version Tag for Image
+  COINBASEAPIKEY:
+    Type: String
+    Description: API Key For Interfacing with CoinBase
+  COINBASEAPISECRET:
+    Type: String
+    Description: API Secret Key For Interfacing with CoinBase
+  REDISURL:
+    Type: String
+    Description: Redis Connection URL
+  SLACKAPITOKEN:
+    Type: String
+    Description: Slack API Token
 
 Resources:
   CloudwatchLogsGroup:
@@ -33,13 +45,13 @@ Resources:
         - Image: !Join [':', [!Ref ECRImage, !Ref ImageTag]] 
           Environment:
             - Name: COINBASE_API_KEY
-              Value: zQldP1UslBjWMrWm
+              Value: !Ref COINBASEAPIKEY
             - Name: COINBASE_API_SECRET
-              Value: X3ELbCmiVpAw5Gjv7bqrXgdBN8RIGoCh
+              Value: !Ref COINBASEAPISECRET
             - Name: REDIS_URL
-              Value: redis://tipbot-test.5spclu.ng.0001.usw2.cache.amazonaws.com:6379/tipbotdev
+              Value: !Ref REDISURL
             - Name: SLACK_API_TOKEN
-              Value: xoxb-185804770452-m8NiQeLtxSm7keU4COsSQRi6
+              Value: !Ref SLACKAPITOKEN
           LogConfiguration:
             LogDriver: awslogs
             Options:
