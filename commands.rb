@@ -2,7 +2,7 @@ module Commands
   def help data
     response = {
       channel: data['channel'],
-      text: "Here's how I work!
+      text: "Here's how I work! It's easy to make it rain!
 ```
 Usage: tip @user [amount]
 
