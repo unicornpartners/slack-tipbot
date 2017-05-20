@@ -33,7 +33,8 @@ Other Commands
   # Display the current value for a bit in USD
   @tipbot bitvalue                             
 
-In direct message chat, you can issue these commands without prefixing '@tipbot ...'.```
+In direct message chat, you can issue these commands without prefixing '@tipbot ...'.
+```
 
 There are 1,000,000 bits in 1 bitcoin.
 
