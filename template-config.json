@@ -1,0 +1,6 @@
+{
+  "Parameters" : {
+    "ECSCluster" : "unicorn-containers",
+    "ECRImage" : "513726060493.dkr.ecr.us-west-2.amazonaws.com/slack-tipbot"
+  }
+}
