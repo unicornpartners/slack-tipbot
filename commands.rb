@@ -4,13 +4,13 @@ module Commands
       channel: data['channel'],
       text: "Here's how I work!
 ```
-Usage: tip @user [amount]
+Usage: @tipbot tip @user [amount]
 
 Tipping
 
-  tip @bob            # send @bob 10 bits
-  tip @bob 1000       # send @bob 1000 bits
-  tip @bob 5 USD      # send @bob 5 U.S. dollars in bitcoin
+  @tipbot tip @bob            # send @bob 10 bits
+  @tipbot tip @bob 1000       # send @bob 1000 bits
+  @tipbot tip @bob 5 USD      # send @bob 5 U.S. dollars in bitcoin
 
 Other Commands
 
