@@ -1,0 +1,60 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description:
+  Template for automating Task Definitions of an existing ECS cluster.
+
+Parameters:
+  ECSCluster:
+    Type: String
+    Description: AWS ECS Cluster Name
+  ECRImage:
+    Type: String
+    Description: Name of Image to Deploy in Container
+    Default: "513726060493.dkr.ecr.us-west-2.amazonaws.com/slack-tipbot:latest"
+
+Resources:
+  CloudwatchLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Join ['-', [ECSLogGroup, !Ref 'AWS::StackName']]
+      RetentionInDays: 14
+  SlackTipBotDefinition:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties: 
+      Volumes:
+        - Name: slack-tipbot-vol
+      Family: slack-tipbot-dev
+      NetworkMode: host
+      ContainerDefinitions:
+        - Image: !Ref ECRImage
+          Environment:
+            - Name: COINBASE_API_KEY
+              Value: zQldP1UslBjWMrWm
+            - Name: COINBASE_API_SECRET
+              Value: X3ELbCmiVpAw5Gjv7bqrXgdBN8RIGoCh
+            - Name: REDIS_URL
+              Value: redis://tipbot-test.5spclu.ng.0001.usw2.cache.amazonaws.com:6379/tipbotdev
+            - Name: SLACK_API_TOKEN
+              Value: xoxb-185804770452-m8NiQeLtxSm7keU4COsSQRi6
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref 'CloudwatchLogsGroup'
+              awslogs-region: !Ref 'AWS::Region'
+              awslogs-stream-prefix: slack-tipbot-dev
+          Memory: 256
+          Name: slack-tipbot
+  SlackTipBotService:
+    Type: "AWS::ECS::Service"
+    Properties: 
+      Cluster: !Ref ECSCluster
+      DesiredCount: 1
+      ServiceName: slack-tipbot-service
+      TaskDefinition: !Ref SlackTipBotDefinition
+
+Outputs:
+  TaskDef:
+    Value: !Ref SlackTipBotDefinition
+  ServiceDef:
+    Value: !Ref SlackTipBotService
