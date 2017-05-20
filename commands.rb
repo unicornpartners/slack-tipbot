@@ -21,13 +21,11 @@ Other Commands
   @tipbot balances <currency>                  # see who has what
   @tipbot bitvalue                             # Display the current value for a bit in USD
 
-
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.```
 \n
 You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bits :10bits:, 100bits :100bits:, and 1000bits :1000bits:.
 \n
-Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin. \n
-v0.1.2-dev
+Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin.```
       ".strip
     }
     message(response)
@@ -89,7 +87,7 @@ v0.1.2-dev
     currency ||= "bits"
 
     currency.downcase!
-    
+
     account_id = find_or_create_account(data['user'])
     b = coinbase.account(account_id).balance
 
