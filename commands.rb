@@ -2,7 +2,7 @@ module Commands
   def help data
     response = {
       channel: data['channel'],
-      text: "Here's how I work! It's easy to make it rain!
+      text: "Here's how I work!
 ```
 Usage: tip @user [amount]
 
@@ -26,7 +26,8 @@ In direct message chat, you can issue these commands without prefixing '@tipbot 
 \n
 You can also tip people with reactions to their messages. Try 1bit :1bit:, 10bits :10bits:, 100bits :100bits:, and 1000bits :1000bits:.
 \n
-Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin. 
+Just so you understand how much money you are throwing away, there are 1,000,000 bits in 1 bitcoin. \n
+v0.1.2-dev
       ".strip
     }
     message(response)
