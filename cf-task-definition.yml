@@ -11,7 +11,10 @@ Parameters:
   ECRImage:
     Type: String
     Description: Name of Image to Deploy in Container
-    Default: "513726060493.dkr.ecr.us-west-2.amazonaws.com/slack-tipbot:latest"
+    Default: "513726060493.dkr.ecr.us-west-2.amazonaws.com/slack-tipbot"
+  ImageTag:
+    Type: String
+    Description: Version Tag for Image
 
 Resources:
   CloudwatchLogsGroup:
@@ -27,7 +30,7 @@ Resources:
       Family: slack-tipbot-dev
       NetworkMode: host
       ContainerDefinitions:
-        - Image: !Ref ECRImage
+        - Image: !Join [':', [!Ref ECRImage, !Ref ImageTag]] 
           Environment:
             - Name: COINBASE_API_KEY
               Value: zQldP1UslBjWMrWm
