@@ -41,8 +41,8 @@ Resources:
     Properties: 
       Volumes:
         - Name: slack-tipbot-vol
-      Family: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
-      NetworkMode: host
+      Family: !Join [ '-', [ slack-tipbot, !Ref STAGEPREFIX]]
+      NetworkMode: bridge
       ContainerDefinitions:
         - Image: !Join [':', [!Ref ECRImage, !Ref ImageTag]] 
           Environment:
@@ -59,9 +59,9 @@ Resources:
             Options:
               awslogs-group: !Ref 'CloudwatchLogsGroup'
               awslogs-region: !Ref 'AWS::Region'
-              awslogs-stream-prefix: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
+              awslogs-stream-prefix: !Join [ '-', [ slack-tipbot, !Ref STAGEPREFIX]]
           Memory: 256
-          Name: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
+          Name: !Join [ '-', [ slack-tipbot, !Ref STAGEPREFIX]]
           PortMappings:
             - ContainerPort: 9292
               Protocol: tcp
