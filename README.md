@@ -7,27 +7,38 @@ Reward teammates in slack with bitcoin! Recognize greatness on your team with th
 ## Usage
 
 ```
-Usage: tip @user [amount]
+Usage: @tipbot tip @user [amount]
 
 Tipping
 
-  tip @bob            # send @bob 10 bits
-  tip @bob 1000       # send @bob 1000 bits
-  tip @bob 5 USD      # send @bob 5 U.S. dollars in bitcoin
+  @tipbot tip @bob            # send @bob 10 bits
+  @tipbot tip @bob 1000       # send @bob 1000 bits
+  @tipbot tip @bob 5 USD      # send @bob 5 U.S. dollars in bitcoin
 
 Other Commands
+  
+  # show your balance. 'bal' or 'b' also work
+  @tipbot balance <currency>                  
+  
+  # show top 20 bit balances on the team
+  @tipbot balances <currency>                  
+  
+  # show a bitcoin address to add more funds
+  @tipbot deposit
+  
+  # withdraw to a bitcoin or email address
+  @tipbot withdraw <amount> <address|email>    
+  @tipbot send <amount> <address|email>        
 
-  @tipbot balance <currency>                   # shows your balance, 'bal' also works
-  @tipbot deposit                              # show a bitcoin address to add more funds
-  @tipbot withdraw <amount> <address|email>    # withdraw to a bitcoin or email address
-  @tipbot send <amount> <address|email>        # same as withdraw
-  @tipbot leaderboard <currency>               # see who has what, 'rank' also works
+  # Display the current value for a bit in USD
+  @tipbot bitvalue                             
 
 In direct message chat, you can issue these commands without prefixing '@tipbot ...'.
 ```
 
-You can also tip people with reactions to their messages. Try 1bit <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/1bit.png" width="22" height="22">, 10bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/10bits.png" width="22" height="22">, 100bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/100bits.png" width="22" height="22">, and 1000bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/1000bits.png" width="22" height="22">.
+There are 1,000,000 bits in 1 bitcoin.
 
+You can also tip people with reactions to their messages. Try 1bit <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/1bit.png" width="22" height="22">, 10bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/10bits.png" width="22" height="22">, 100bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/100bits.png" width="22" height="22">, and 1000bits <img src="https://raw.githubusercontent.com/barmstrong/slack-tipbot/master/images/1000bits.png" width="22" height="22">.
 
 ## Installation
 
