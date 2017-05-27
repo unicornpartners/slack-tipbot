@@ -60,6 +60,9 @@ Resources:
               awslogs-stream-prefix: slack-tipbot-dev
           Memory: 256
           Name: slack-tipbot
+          PortMappings:
+            - ContainerPort: 9292
+              Protocol: tcp
   SlackTipBotService:
     Type: "AWS::ECS::Service"
     Properties: 
