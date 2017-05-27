@@ -11,7 +11,6 @@ Parameters:
   ECRImage:
     Type: String
     Description: Name of Image to Deploy in Container
-    Default: "513726060493.dkr.ecr.us-west-2.amazonaws.com/slack-tipbot"
   ImageTag:
     Type: String
     Description: Version Tag for Image
@@ -27,6 +26,9 @@ Parameters:
   SLACKAPITOKEN:
     Type: String
     Description: Slack API Token
+  STAGEPREFIX:
+    Type: String
+    Description: Prefix for Multi-Stage Deployments.
 
 Resources:
   CloudwatchLogsGroup:
@@ -39,7 +41,7 @@ Resources:
     Properties: 
       Volumes:
         - Name: slack-tipbot-vol
-      Family: slack-tipbot-dev
+      Family: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
       NetworkMode: host
       ContainerDefinitions:
         - Image: !Join [':', [!Ref ECRImage, !Ref ImageTag]] 
@@ -57,9 +59,9 @@ Resources:
             Options:
               awslogs-group: !Ref 'CloudwatchLogsGroup'
               awslogs-region: !Ref 'AWS::Region'
-              awslogs-stream-prefix: slack-tipbot-dev
+              awslogs-stream-prefix: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
           Memory: 256
-          Name: slack-tipbot
+          Name: !Join [ '-', [ slack-tipbot-dev, !Ref STAGEPREFIX]]
           PortMappings:
             - ContainerPort: 9292
               Protocol: tcp
@@ -68,7 +70,7 @@ Resources:
     Properties: 
       Cluster: !Ref ECSCluster
       DesiredCount: 1
-      ServiceName: slack-tipbot-service
+      ServiceName: !Join [ '-', [ slack-tipbot-service, !Ref STAGEPREFIX]] 
       TaskDefinition: !Ref SlackTipBotDefinition
 
 Outputs:
